@@ -14,8 +14,8 @@ int main(int argc, char *argv[])
     //glayout->addWidget(new InputLcd());
     //glayout->addWidget(new DialButton(Qt::AlignCenter, 0, 0 ), 1, 0, Qt::AlignCenter);
 
-    w.setMinimumSize(500,200);
-    w.setMaximumSize(500,200);
+    w.setMinimumSize(520,240);
+    w.setMaximumSize(520,240);
 
     w.show();
 

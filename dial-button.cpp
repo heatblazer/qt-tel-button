@@ -1,4 +1,5 @@
 #include "dial-button.h"
+#include "widget.h"
 #include <QDebug>
 
 
@@ -11,15 +12,16 @@ void DialButton::moveIndex()
     }
 }
 
-DialButton::DialButton(Qt::Alignment align, int interval, int step,QWidget *parent)
+DialButton::DialButton(Qt::Alignment align, QChar buttons[4], int interval, int step,QWidget *parent)
     : QPushButton(parent), m_interval(interval), m_step(step),
       m_align(align), m_lettersIndex(0)
 {
 
-    m_letters[0] = '1';
-    m_letters[1] = 'A';
-    m_letters[2] = 'B';
-    m_letters[3] = 'C';
+    m_parentWidget = parent;
+    m_letters[0] = buttons[0];
+    m_letters[1] = buttons[1];
+    m_letters[2] = buttons[2];
+    m_letters[3] = buttons[3];
 
     connect(this, SIGNAL(clicked(bool)), this, SLOT(clicked()));
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -32,7 +34,7 @@ DialButton::DialButton(Qt::Alignment align, int interval, int step,QWidget *pare
 void DialButton::clicked()
 {
     //m_align ^= Qt::AlignCenter;
-    parentWidget()->layout()->setAlignment(this, m_align);
+    //parentWidget()->layout()->setAlignment(this, m_align);
     qDebug() << "clicked button" ;
     static int click = 0;
     {

@@ -23,7 +23,16 @@ public:
 
     const QLayout*    getLayout();
 private:
-    DialButton*     m_button;
+    DialButton*     m_button1;
+    DialButton*     m_button2;
+    DialButton*     m_button3;
+    DialButton*     m_button4;
+    DialButton*     m_button5;
+    DialButton*     m_button6;
+    DialButton*     m_button7;
+    DialButton*     m_button8;
+    DialButton*     m_button9;
+
     InputLcd*       m_lcd;
 
     QLayout*        m_layout;

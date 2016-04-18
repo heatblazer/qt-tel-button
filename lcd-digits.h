@@ -11,9 +11,7 @@ public:
     explicit InputLcd(QWidget* parent = 0);
 
 public slots:
-
-
-
+//    void updateLcd(void);
 
 };
 
