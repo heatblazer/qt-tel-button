@@ -12,6 +12,7 @@ class DialButton : public QPushButton
 private:
     Qt::Alignment m_align;
     QTime       m_timer;
+    QTime       m_timestop;
 
     QChar       m_letters[4];
     quint32     m_lettersIndex;

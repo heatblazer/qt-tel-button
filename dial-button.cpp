@@ -1,6 +1,8 @@
 #include "dial-button.h"
 #include "widget.h"
 #include <QDebug>
+#include <QMutex>
+#include <iostream>
 
 
 void DialButton::moveIndex()
@@ -22,10 +24,9 @@ DialButton::DialButton(Qt::Alignment align, QChar buttons[4], int interval, int 
     m_letters[1] = buttons[1];
     m_letters[2] = buttons[2];
     m_letters[3] = buttons[3];
-
+    m_timer.start();
     connect(this, SIGNAL(clicked(bool)), this, SLOT(clicked()));
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    m_timer.start();
     label();
 
 }
@@ -35,14 +36,14 @@ void DialButton::clicked()
 {
     //m_align ^= Qt::AlignCenter;
     //parentWidget()->layout()->setAlignment(this, m_align);
+    static QMutex mutex;
     qDebug() << "clicked button" ;
     static int click = 0;
+    mutex.lock();
+   // m_timestop.start();
     {
 
-
-        int timed_input = m_timer.elapsed() - QTime::currentTime().elapsed();
-
-        int dtime =  m_timer.elapsed() - QTime::currentTime().elapsed();
+        int dtime =  m_timer.elapsed() - QTime::currentTime().elapsed();//- m_timestop.elapsed();
 
         if ( dtime <= 1000){
             moveIndex();
@@ -52,10 +53,11 @@ void DialButton::clicked()
 
             //put to screen or insert to the textbox
         }
-
         qDebug() << "LETTER: " << m_letters[m_lettersIndex];
+        std::cout << "LETTER:" << m_letters[m_lettersIndex].toLatin1()
+                     << std::endl;
     }
-
+    mutex.unlock();
     label();
 }
 

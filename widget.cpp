@@ -1,5 +1,4 @@
 #include "widget.h"
-#include "ui_widget.h"
 #include "dial-button.h"
 #include "lcd-digits.h"
 
