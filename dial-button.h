@@ -18,20 +18,19 @@ private:
     quint32     m_lettersIndex;
     void        moveIndex(void);
 
-
-    int m_interval;
-    int m_step;
 signals:
     void signalDisplay(QChar c);
-
+    void signalParent(int id);
 public slots:
     void clicked() ;
     void label();
 public:
-     explicit DialButton(Qt::Alignment align, QChar buttons[4], int interval, int step, QWidget* parent=0);
+    virtual QChar   getCurrentSymbol(void);
+    explicit DialButton(Qt::Alignment align, QChar buttons[4], int id, QWidget* parent=0);
 
 private:
     QWidget* m_parentWidget;
+    int m_id;
 };
 
 #endif // DIALBUTTON_H

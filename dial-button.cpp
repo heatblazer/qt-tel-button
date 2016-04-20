@@ -14,8 +14,8 @@ void DialButton::moveIndex()
     }
 }
 
-DialButton::DialButton(Qt::Alignment align, QChar buttons[4], int interval, int step,QWidget *parent)
-    : QPushButton(parent), m_interval(interval), m_step(step),
+DialButton::DialButton(Qt::Alignment align, QChar buttons[4], int id,QWidget *parent)
+    : QPushButton(parent), m_id(id),
       m_align(align), m_lettersIndex(0)
 {
 
@@ -28,6 +28,7 @@ DialButton::DialButton(Qt::Alignment align, QChar buttons[4], int interval, int 
     connect(this, SIGNAL(clicked(bool)), this, SLOT(clicked()));
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     label();
+    m_parentWidget = (Widget*)parent;
 
 }
 
@@ -47,10 +48,12 @@ void DialButton::clicked()
 
         if ( dtime <= 1000){
             moveIndex();
+            emit signalParent(m_lettersIndex);
+
         } else {
             m_lettersIndex = 0;
             m_timer.restart();
-
+            emit signalParent(m_lettersIndex);
             //put to screen or insert to the textbox
         }
         qDebug() << "LETTER: " << m_letters[m_lettersIndex];
@@ -64,4 +67,10 @@ void DialButton::clicked()
 void DialButton::label()
 {
     setText(QString("%1\n%2%3%4").arg(m_letters[0]).arg(m_letters[1]).arg(m_letters[2]).arg(m_letters[3]));
+}
+
+
+QChar DialButton::getCurrentSymbol(void)
+{
+    return m_letters[m_lettersIndex];
 }

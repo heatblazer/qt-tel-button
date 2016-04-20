@@ -21,17 +21,12 @@ public:
     ~Widget();
 
 
+public slots:
+    void onButtonClick(int id);
+
     const QLayout*    getLayout();
 private:
-    DialButton*     m_button1;
-    DialButton*     m_button2;
-    DialButton*     m_button3;
-    DialButton*     m_button4;
-    DialButton*     m_button5;
-    DialButton*     m_button6;
-    DialButton*     m_button7;
-    DialButton*     m_button8;
-    DialButton*     m_button9;
+    DialButton*     m_buttons[9];
 
     InputLcd*       m_lcd;
 
