@@ -48,12 +48,12 @@ void DialButton::clicked()
 
         if ( dtime <= 1000){
             moveIndex();
-            emit signalParent(m_lettersIndex);
+            emit signalParent(this);
 
         } else {
             m_lettersIndex = 0;
             m_timer.restart();
-            emit signalParent(m_lettersIndex);
+            emit signalParent(this);
             //put to screen or insert to the textbox
         }
         qDebug() << "LETTER: " << m_letters[m_lettersIndex];

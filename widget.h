@@ -22,7 +22,7 @@ public:
 
 
 public slots:
-    void onButtonClick(int id);
+    void onButtonClick(DialButton* button);
 
     const QLayout*    getLayout();
 private:

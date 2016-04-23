@@ -45,15 +45,16 @@ Widget::Widget(QWidget *parent) :
 
     ((QGridLayout*)m_layout)->addWidget(m_lcd, 1,1, Qt::AlignAbsolute);
 
-    connect(m_buttons[0], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(int)));
-    connect(m_buttons[1], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(int)));
-    connect(m_buttons[2], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(int)));
-    connect(m_buttons[3], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(int)));
-    connect(m_buttons[4], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(int)));
-    connect(m_buttons[5], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(int)));
-    connect(m_buttons[6], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(int)));
-    connect(m_buttons[7], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(int)));
-    connect(m_buttons[8], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(int)));
+    connect(m_buttons[0], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(const DialButton*)));
+    connect(m_buttons[1], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(const DialButton*)));
+    connect(m_buttons[2], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(const DialButton*)));
+    connect(m_buttons[3], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(const DialButton*)));
+    connect(m_buttons[4], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(const DialButton*)));
+    connect(m_buttons[5], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(const DialButton*)));
+    connect(m_buttons[6], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(const DialButton*)));
+    connect(m_buttons[7], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(const DialButton*)));
+    connect(m_buttons[8], SIGNAL(signalParent(int)), this, SLOT(onButtonClick(const DialButton*)));
+
 
 
 
@@ -69,7 +70,7 @@ const QLayout* Widget::getLayout()
 }
 
 
-void Widget::onButtonClick(int buttonId)
+void Widget::onButtonClick(DialButton* button)
 {
-   m_lcd->setText(QString(m_buttons[buttonId]->getCurrentSymbol()));
+   m_lcd->setText(QString(button->getCurrentSymbol()));
 }

@@ -20,7 +20,7 @@ private:
 
 signals:
     void signalDisplay(QChar c);
-    void signalParent(int id);
+    void signalParent(const DialButton* button);
 public slots:
     void clicked() ;
     void label();
